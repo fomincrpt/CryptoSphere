@@ -1,0 +1,22 @@
+# scripts/data_collection.py
+
+import requests
+
+def fetch_market_data(api_url, endpoint, params=None):
+    """
+    Fetch market data from an API.
+    
+    :param api_url: Base URL of the API
+    :param endpoint: API endpoint to fetch data from
+    :param params: Additional parameters for the API request
+    :return: JSON response data
+    """
+    url = f'{api_url}/{endpoint}'
+    response = requests.get(url, params=params)
+    response.raise_for_status()  # Raise an error for bad responses
+    data = response.json()
+    return data
+
+# Example usage:
+# market_data = fetch_market_data('https://api.cryptocurrency.example.com', 'market_data', {'symbol': 'BTC'})
+# print(market_data)
